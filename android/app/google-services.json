@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "425365984402",
+    "project_id": "rnfoodapp-f6979",
+    "storage_bucket": "rnfoodapp-f6979.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:425365984402:android:b507016536ba21ad90024b",
+        "android_client_info": {
+          "package_name": "com.rnfoodapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "425365984402-ro9g6vo9fch2s48mnhkjjanhmrc83kp4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rnfoodapp",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "425365984402-ph9ls5tig56v2gknqilhikjnf5tfhhrg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUR_eWexm25Fkf-5bqG-Y9AVnzdu9ZM0w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "425365984402-ph9ls5tig56v2gknqilhikjnf5tfhhrg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
