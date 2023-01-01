@@ -10,7 +10,7 @@ const KeyboardAvoidingWrapper = ({children}) => {
   return (
     <KeyboardAvoidingView
       style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           {children}
         </TouchableWithoutFeedback>
