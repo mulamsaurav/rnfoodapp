@@ -18,6 +18,12 @@ export const styles = StyleSheet.create({
     borderBottomColor: 'black',
     width: width * 0.9,
   },
+  image: {
+    width: '90%',
+    height: 200,
+    alignSelf: 'center',
+    borderRadius: 10,
+  },
   ORTxt: {
     fontSize: 18,
     color: 'black',

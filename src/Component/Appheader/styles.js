@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 7,
     borderRadius: 4,
+    padding: '3%',
   },
   icons: {
     width: 32,

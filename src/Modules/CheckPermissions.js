@@ -24,7 +24,7 @@ const REQUEST_PERMISSION_TYPE = {
   // location: PLATEFORM_LOCATION_PERMISSION,
 };
 
-const PERMISSION_TYPE = {
+export const PERMISSION_TYPE = {
   storage: 'storage',
   phone_state: 'phone_state',
   biometric: 'biometric',
@@ -42,11 +42,15 @@ const checkPermission = async type => {
   try {
     console.log('permition var:-', permission);
     const result = await check(permission);
-    console.log('check permission', result);
+    console.log('check permission dadad', result);
     if (result === RESULTS.GRANTED) {
       console.log('garnted');
       return (Permission = type);
-    } else if (result === RESULTS.BLOCKED || result === RESULTS.DENIED) {
+    } else if (
+      result === RESULTS.BLOCKED ||
+      result === RESULTS.DENIED ||
+      result === RESULTS.LIMITED
+    ) {
       console.log('first');
       requestPermission(permission, type);
       // return reqPermission(permission, type);
@@ -99,7 +103,16 @@ const permissionHandler = () => {
     'Alert!',
     'Permission Required',
     'Required permission(s) have been set not to ask again! Please provide them from settings',
-    [{text: 'cancel'}, {text: 'settings', onPress: () => openSettings()}],
+    [
+      {text: 'cancel'},
+      {
+        text: 'settings',
+        onPress: () => {
+          if (Platform.OS == 'ios') Linking.openURL('app-settings:');
+          else Linking.openSettings();
+        },
+      },
+    ],
   );
 };
 export {checkPermission, requestPermission, reqPermission, permissionHandler};
