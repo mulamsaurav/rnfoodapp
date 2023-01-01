@@ -6,10 +6,10 @@ import OrdersIcon from '../../assets/orders-icon.png';
 import TransactionIcon from '../../assets/transaction-icon.png';
 import ItemsIcon from '../../assets/items-icon.png';
 import BellIcon from '../../assets/bell-icon.png';
-import Orders from '../App/Orders/Orders';
-import Items from '../App/Items/Items';
-import Add from '../App/Add/Add';
-import Transaction from '../App/Transaction/Transaction';
+import Orders from '../App/Admin/Orders/Orders';
+import Items from '../App/Admin/Items/Items';
+import Add from '../App/Admin/Add/Add';
+import Transaction from '../App/Admin/Transaction/Transaction';
 
 const Dashboard = ({navigation}) => {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -21,13 +21,13 @@ const Dashboard = ({navigation}) => {
       {selectedTab == 0 ? (
         <Orders navigation={navigation} />
       ) : selectedTab == 1 ? (
-        <Items />
+        <Items navigation={navigation} />
       ) : selectedTab == 2 ? (
-        <Add />
+        <Add navigation={navigation} />
       ) : selectedTab == 3 ? (
-        <Transaction />
+        <Transaction navigation={navigation} />
       ) : (
-        <Notification />
+        <Notification navigation={navigation} />
       )}
       <View style={styles.footerContainer}>
         <Pressable style={styles.iconView} onPress={() => OnPress(0)}>
@@ -35,14 +35,14 @@ const Dashboard = ({navigation}) => {
             source={OrdersIcon}
             style={[styles.icons, selectedTab === 0 ? {tintColor: 'red'} : {}]}
           />
-          <Text>Orders</Text>
+          {/* <Text>Orders</Text> */}
         </Pressable>
         <Pressable style={styles.iconView} onPress={() => OnPress(1)}>
           <Image
             source={ItemsIcon}
             style={[styles.icons, selectedTab === 1 ? {tintColor: 'red'} : {}]}
           />
-          <Text>Items</Text>
+          {/* <Text>Items</Text> */}
         </Pressable>
         <Pressable style={styles.iconView} onPress={() => OnPress(2)}>
           <Image
@@ -53,21 +53,21 @@ const Dashboard = ({navigation}) => {
               selectedTab === 2 ? {tintColor: 'red'} : {},
             ]}
           />
-          <Text>Add</Text>
+          {/* <Text>Add</Text> */}
         </Pressable>
         <Pressable style={styles.iconView} onPress={() => OnPress(3)}>
           <Image
             source={TransactionIcon}
             style={[styles.icons, selectedTab === 3 ? {tintColor: 'red'} : {}]}
           />
-          <Text>Transaction</Text>
+          {/* <Text>Transaction</Text> */}
         </Pressable>
         <Pressable style={styles.iconView} onPress={() => OnPress(4)}>
           <Image
             source={BellIcon}
             style={[styles.icons, selectedTab === 4 ? {tintColor: 'red'} : {}]}
           />
-          <Text>Items</Text>
+          {/* <Text>Items</Text> */}
         </Pressable>
       </View>
     </SafeAreaView>

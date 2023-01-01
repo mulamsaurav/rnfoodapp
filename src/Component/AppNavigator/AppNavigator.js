@@ -7,10 +7,11 @@ import Dashboard from '../../screens/Dashboard/Dashboard';
 import Splash from '../../screens/Auth/Splash/Splash';
 import Login from '../../screens/Auth/Login/Login';
 import Signup from '../../screens/Auth/Signup/Signup';
-import Orders from '../../screens/App/Orders/Orders';
-import Items from '../../screens/App/Items/Items';
-import Add from '../../screens/App/Add/Add';
-import Transaction from '../../screens/App/Transaction/Transaction';
+import Orders from '../../screens/App/Admin/Orders/Orders';
+import Items from '../../screens/App/Admin/Items/Items';
+import Add from '../../screens/App/Admin/Add/Add';
+import Transaction from '../../screens/App/Admin/Transaction/Transaction';
+import EditItem from '../../screens/App/Admin/EditItem/EditItem';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -69,6 +70,11 @@ const AppNavigator = () => {
         <Stack.Screen
           name="Transaction"
           component={Transaction}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="EditItem"
+          component={EditItem}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

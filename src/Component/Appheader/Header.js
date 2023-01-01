@@ -9,18 +9,22 @@ const Header = ({navigation, title, logout, goBack}) => {
     navigation.goBack();
   };
   return (
-    <Pressable style={styles.container} onPress={onBack}>
+    <View style={styles.container}>
       {goBack ? (
-        <Image
-          source={Platform.OS === 'ios' ? IosBackArrow : AndroidBackArrow}
-          style={styles.icons}
-        />
+        <Pressable onPress={onBack}>
+          <Image
+            source={Platform.OS === 'ios' ? IosBackArrow : AndroidBackArrow}
+            style={styles.icons}
+          />
+        </Pressable>
       ) : null}
       <Text style={styles.title}>{title}</Text>
       {logout ? (
-        <Image source={AndroidBackArrow} style={styles.logoutIcons} />
+        <Pressable>
+          <Image source={AndroidBackArrow} style={styles.logoutIcons} />
+        </Pressable>
       ) : null}
-    </Pressable>
+    </View>
   );
 };
 

@@ -11,6 +11,7 @@ const Input = ({
   cursorColor,
   isSecurePass,
   value,
+  maxLength,
   onchangetext,
   keyboardType,
 }) => {
@@ -28,6 +29,7 @@ const Input = ({
         placeholderTextColor={placeholderTextColor}
         secureTextEntry={isSecurePass && !isPasswordVisible}
         value={value}
+        maxLength={maxLength}
         onChangeText={onchangetext}
         keyboardType={keyboardType}
       />
