@@ -1,13 +1,13 @@
 import {View, Text, SafeAreaView, ImageBackground} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {styles} from './styles';
-import Input from '../../../Component/Input/Input';
-import Button from '../../../Component/Button/Button';
-import KeyboardAvoidingWrapper from '../../../Component/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper.js';
-import LoginBgImage from '../../../assets/loginbackground-image.png';
+import Input from '../../../../Component/Input/Input';
+import Button from '../../../../Component/Button/Button';
+import KeyboardAvoidingWrapper from '../../../../Component/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper.js';
+import LoginBgImage from '../../../../assets/loginbackground-image.png';
 import firestore from '@react-native-firebase/firestore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import CheckInternetConnection from '../../../Modules/CheckInternetConnection.js';
+import CheckInternetConnection from '../../../../Modules/CheckInternetConnection.js';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');

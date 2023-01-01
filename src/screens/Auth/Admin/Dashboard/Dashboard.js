@@ -1,15 +1,15 @@
 import {SafeAreaView, View, Text, Image, Pressable} from 'react-native';
 import React, {useState} from 'react';
 import {styles} from './styles';
-import AddIcon from '../../assets/add-icon.png';
-import OrdersIcon from '../../assets/orders-icon.png';
-import TransactionIcon from '../../assets/transaction-icon.png';
-import ItemsIcon from '../../assets/items-icon.png';
-import BellIcon from '../../assets/bell-icon.png';
-import Orders from '../App/Admin/Orders/Orders';
-import Items from '../App/Admin/Items/Items';
-import Add from '../App/Admin/Add/Add';
-import Transaction from '../App/Admin/Transaction/Transaction';
+import AddIcon from '../../../../assets/add-icon.png';
+import OrdersIcon from '../../../../assets/orders-icon.png';
+import TransactionIcon from '../../../../assets/transaction-icon.png';
+import ItemsIcon from '../../../../assets/items-icon.png';
+import BellIcon from '../../../../assets/bell-icon.png';
+import Orders from '../../../App/Admin/Orders/Orders';
+import Items from '../../../App/Admin/Items/Items';
+import Add from '../../../App/Admin/Add/Add';
+import Transaction from '../../../App/Admin/Transaction/Transaction';
 
 const Dashboard = ({navigation}) => {
   const [selectedTab, setSelectedTab] = useState(0);

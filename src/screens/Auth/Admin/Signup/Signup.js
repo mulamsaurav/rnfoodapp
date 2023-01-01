@@ -1,10 +1,10 @@
 import {View, Text, SafeAreaView, ImageBackground} from 'react-native';
 import React from 'react';
 import {styles} from './styles';
-import Input from '../../../Component/Input/Input';
-import Button from '../../../Component/Button/Button';
-import KeyboardAvoidingWrapper from '../../../Component/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper.js';
-import SignupBgImage from '../../../assets/loginbackground-image.png';
+import Input from '../../../../Component/Input/Input';
+import Button from '../../../../Component/Button/Button';
+import KeyboardAvoidingWrapper from '../../../../Component/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper.js';
+import SignupBgImage from '../../../../assets/loginbackground-image.png';
 const Signup = ({navigation}) => {
   const onSignup = () => {
     console.log('Signup Pressed');
