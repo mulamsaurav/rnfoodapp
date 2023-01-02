@@ -20,8 +20,8 @@ const Loader = ({modalVisible, setModalVisible}) => {
       }}>
       <View style={styles.modalMainView}>
         <View style={styles.modalView}>
-          <ActivityIndicator size={50} />
-          <Text>Loading</Text>
+          <ActivityIndicator size={50} color={'#000'} />
+          <Text style={{color: 'black', fontWeight: '700'}}>Loading</Text>
         </View>
       </View>
     </Modal>
@@ -44,5 +44,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
+    borderColor: '#000',
+    borderWidth: 2,
   },
 });

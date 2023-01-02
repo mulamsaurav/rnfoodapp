@@ -14,4 +14,10 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     color: colors.white,
   },
+  inputstyle: {
+    fontSize: 20,
+    color: 'white',
+    fontWeight: '500',
+    borderBottomColor: 'white',
+  },
 });

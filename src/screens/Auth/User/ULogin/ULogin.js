@@ -10,7 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import CheckInternetConnection from '../../../../Modules/CheckInternetConnection.js';
 import Loader from '../../../../Component/Loader/Loader';
 
-const Login = ({navigation}) => {
+const ULogin = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,20 +18,22 @@ const Login = ({navigation}) => {
   const checkConnection = async () => {
     let checkInternet = await new CheckInternetConnection().checkConnection();
     if (checkInternet) {
-      adminLogin();
+      console.log('ULogin');
+      userLogin();
     }
   };
 
-  const adminLogin = async () => {
+  const userLogin = async () => {
     if (email !== '' && password !== '') {
       setModalVisible(true);
-      const admin = await firestore().collection('Admin').get();
-      const emailId = admin._docs[0]._data.email;
-      const pass = admin._docs[0]._data.password;
+      const user = await firestore().collection('Users').get();
+      const emailId = user._docs[0]._data.email;
+      const pass = user._docs[0]._data.password;
       if (email === emailId && password === pass) {
         await AsyncStorage.setItem('isLogin', 'true');
+        console.log('User Logged In');
         setModalVisible(false);
-        navigation.navigate('Dashboard');
+        navigation.navigate('UDashboard');
       } else {
         setModalVisible(false);
         Alert.alert('Alert!', 'Wrong Email/Password!');
@@ -67,15 +69,15 @@ const Login = ({navigation}) => {
           keyboardType={'default'}
         />
         <Button title={'Login'} onpress={checkConnection} />
-        {/* <Text
+        <Text
           style={styles.loginTxt}
-          onPress={() => navigation.navigate('Signup')}>
+          onPress={() => navigation.navigate('USignup')}>
           Don't have an account, Please Signup here
-        </Text> */}
+        </Text>
         <Loader modalVisible={modalVisible} setModalVisible={setModalVisible} />
       </ImageBackground>
     </KeyboardAvoidingWrapper>
   );
 };
 
-export default Login;
+export default ULogin;
