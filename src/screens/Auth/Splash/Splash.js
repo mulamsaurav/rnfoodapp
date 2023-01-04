@@ -9,15 +9,15 @@ const Splash = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(true);
   useEffect(() => {
     async function checkAuth() {
-      let email = await AsyncStorage.getItem('isLogin');
+      let isLogin = await AsyncStorage.getItem('isLogin');
       const type = await AsyncStorage.getItem('TYPE');
       // console.log(type);
-      if (email !== null) email = true;
-      return {type, email};
+      if (isLogin !== null) isLogin = true;
+      return {type, isLogin};
     }
     setTimeout(async () => {
-      console.log((await checkAuth()).email);
-      if (!(await checkAuth()).email) {
+      console.log((await checkAuth()).isLogin);
+      if (!(await checkAuth()).isLogin) {
         setModalVisible(false);
         return navigation.navigate('Logintype');
       } else {

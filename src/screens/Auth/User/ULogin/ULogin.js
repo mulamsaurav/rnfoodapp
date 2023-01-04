@@ -18,7 +18,6 @@ const ULogin = ({navigation}) => {
   const checkConnection = async () => {
     let checkInternet = await new CheckInternetConnection().checkConnection();
     if (checkInternet) {
-      console.log('ULogin');
       userLogin();
     }
   };
@@ -26,18 +25,31 @@ const ULogin = ({navigation}) => {
   const userLogin = async () => {
     if (email !== '' && password !== '') {
       setModalVisible(true);
-      const user = await firestore().collection('Users').get();
-      const emailId = user._docs[0]._data.email;
-      const pass = user._docs[0]._data.password;
-      if (email === emailId && password === pass) {
-        await AsyncStorage.setItem('isLogin', 'true');
-        console.log('User Logged In');
-        setModalVisible(false);
-        navigation.navigate('UDashboard');
-      } else {
-        setModalVisible(false);
-        Alert.alert('Alert!', 'Wrong Email/Password!');
-      }
+      firestore()
+        .collection('Users')
+        .where('email', '==', email)
+        .get()
+        .then(async querySnapshot => {
+          console.log(querySnapshot.docs[0]._data);
+          if (querySnapshot.docs[0]._data) {
+            if (
+              querySnapshot.docs[0]._data.email === email &&
+              querySnapshot.docs[0]._data.password === password
+            ) {
+              await AsyncStorage.setItem('isLogin', 'true');
+              console.log('User Logged In');
+              setModalVisible(false);
+              navigation.navigate('UDashboard');
+            } else {
+              setModalVisible(false);
+              Alert.alert('Alert!', 'Wrong Email/Password!');
+            }
+          }
+        })
+        .catch(error => {
+          setModalVisible(false);
+          Alert.alert('Alert!', 'User not found');
+        });
     } else {
       setModalVisible(false);
       alert('Please enter Email/Password !');

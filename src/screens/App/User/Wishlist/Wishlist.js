@@ -1,12 +1,12 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 
-const UDashboard = () => {
+const Wishlist = () => {
   return (
     <View>
-      <Text>UDashboard</Text>
+      <Text>Wishlist</Text>
     </View>
   );
 };
 
-export default UDashboard;
+export default Wishlist;

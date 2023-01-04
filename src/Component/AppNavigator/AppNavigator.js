@@ -14,7 +14,7 @@ import EditItem from '../../screens/App/Admin/EditItem/EditItem.js';
 import Logintype from '../../screens/Auth/Logintype/Logintype.js';
 import ULogin from '../../screens/Auth/User/ULogin/ULogin.js';
 import USignup from '../../screens/Auth/User/USignup/USignup.js';
-import UDashboard from '../../screens/Auth/User/UDashboard/UDashboard.js';
+import UDashboard from '../../screens/App/User/UDashboard/UDashboard.js';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
