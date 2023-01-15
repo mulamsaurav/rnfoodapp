@@ -15,6 +15,7 @@ import Logintype from '../../screens/Auth/Logintype/Logintype.js';
 import ULogin from '../../screens/Auth/User/ULogin/ULogin.js';
 import USignup from '../../screens/Auth/User/USignup/USignup.js';
 import UDashboard from '../../screens/App/User/UDashboard/UDashboard.js';
+import Cart from '../../screens/App/User/Cart/Cart.js';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -94,6 +95,11 @@ const AppNavigator = () => {
         <Stack.Screen
           name="UDashboard"
           component={UDashboard}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Cart"
+          component={Cart}
           options={{headerShown: false}}
         />
         {/* User Screens */}

@@ -1,24 +1,34 @@
 import {View, Text, SafeAreaView, ImageBackground, Alert} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {styles} from './styles';
 import Input from '../../../../Component/Input/Input';
 import Button from '../../../../Component/Button/Button';
 import KeyboardAvoidingWrapper from '../../../../Component/KeyboardAvoidingWrapper/KeyboardAvoidingWrapper.js';
 import SignupBgImage from '../../../../assets/loginbackground-image.png';
 import firestore from '@react-native-firebase/firestore';
+import uuid from 'react-native-uuid';
 const USignup = ({navigation}) => {
+  let userId = uuid.v4();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [mobileNumber, setMobileNumber] = useState('');
   const [password, setPassword] = useState('');
   const [cpassword, setCpassword] = useState('');
-  const onSignup = ({navigation}) => {
+  useEffect(() => {}, []);
+
+  const onSignup = () => {
     if (name !== '' && email !== '' && password !== '' && cpassword !== '') {
       firestore()
         .collection('Users')
-        .add({
+        .doc(userId)
+        .set({
           name: name,
           email: email,
+          mobile_number: mobileNumber,
           password: password,
+          userId: userId,
+          role: 'USER',
+          cart: [],
         })
         .then(() => {
           console.log('User added!');
@@ -51,6 +61,16 @@ const USignup = ({navigation}) => {
           value={email}
           onchangetext={setEmail}
           keyboardType={'default'}
+        />
+        <Input
+          placeholder={'Mobile Number'}
+          Style={styles.inputstyle}
+          placeholderTextColor={'white'}
+          cursorColor={'white'}
+          value={mobileNumber}
+          onchangetext={setMobileNumber}
+          keyboardType={'numeric'}
+          maxLength={10}
         />
         <Input
           placeholder={'Password'}

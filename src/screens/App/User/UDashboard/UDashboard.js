@@ -1,5 +1,5 @@
 import {SafeAreaView, View, Text, Image, Pressable} from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {styles} from './styles';
 import HomeIcon from '../../../../assets/home.png';
 import HomeIconFilled from '../../../../assets/home_filled.png';

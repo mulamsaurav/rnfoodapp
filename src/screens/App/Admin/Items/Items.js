@@ -27,7 +27,8 @@ const Items = ({navigation}) => {
         });
         setItems(tempData);
         setModalVisible(false);
-      });
+      })
+      .catch(error => console.log('Items.js', error));
   };
 
   const renderItemsList = ({item, index}) => {

@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
   flatListContainer: {
     margin: '2%',
     flexDirection: 'row',
-    width: width * 0.9,
+    width: width * 0.93,
     height: height * 0.13,
     backgroundColor: 'white',
     // alignItems: 'center',
@@ -21,14 +21,14 @@ export const styles = StyleSheet.create({
     elevation: 7,
   },
   image: {
-    width: 70,
-    height: 70,
+    width: 75,
+    height: 75,
     margin: '2%',
     borderRadius: 10,
     alignSelf: 'center',
   },
   itemNameView: {
-    width: '73%',
+    width: '55%',
     marginTop: 7,
   },
   itemTxt: {
@@ -47,13 +47,27 @@ export const styles = StyleSheet.create({
     color: 'gray',
   },
   iconView: {
-    position: 'absolute',
-    right: 10,
+    // position: 'absolute',
+    // right: 0,
+    // marginHorizontal: 25,
+    width: '45%',
   },
   editIcon: {width: 24, height: 24, marginVertical: 10},
   deleteIcon: {
     width: 24,
     height: 24,
     tintColor: 'red',
+  },
+  addToCartBtn: {
+    width: width * 0.16,
+    height: height * 0.04,
+    marginTop: 35,
+    backgroundColor: 'green',
+    // marginRight: 15,
+    padding: 2,
+    // justifyContent: 'center',
+  },
+  btnTitleStyle: {
+    fontSize: 10,
   },
 });

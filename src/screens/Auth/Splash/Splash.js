@@ -11,15 +11,13 @@ const Splash = ({navigation}) => {
     async function checkAuth() {
       let isLogin = await AsyncStorage.getItem('isLogin');
       const type = await AsyncStorage.getItem('TYPE');
-      // console.log(type);
       if (isLogin !== null) isLogin = true;
       return {type, isLogin};
     }
     setTimeout(async () => {
-      console.log((await checkAuth()).isLogin);
       if (!(await checkAuth()).isLogin) {
         setModalVisible(false);
-        return navigation.navigate('Logintype');
+        return navigation.navigate('ULogin');
       } else {
         if ((await checkAuth()).type === 'ADMIN') {
           setModalVisible(false);

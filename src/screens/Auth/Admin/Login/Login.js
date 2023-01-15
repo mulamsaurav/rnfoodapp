@@ -25,16 +25,27 @@ const Login = ({navigation}) => {
   const adminLogin = async () => {
     if (email !== '' && password !== '') {
       setModalVisible(true);
-      const admin = await firestore().collection('Admin').get();
-      const emailId = admin._docs[0]._data.email;
-      const pass = admin._docs[0]._data.password;
-      if (email === emailId && password === pass) {
-        await AsyncStorage.setItem('isLogin', 'true');
-        setModalVisible(false);
-        navigation.navigate('Dashboard');
+      const admin = await firestore().collection('Users').get();
+      console.log(admin._docs[0]);
+      if (admin._docs[0] !== undefined) {
+        const emailId = admin._docs[0]._data.email;
+        console.log(emailId);
+        const pass = admin._docs[0]._data.password;
+        const role = admin._docs[0]._data.role;
+        console.log(emailId, pass, role);
+        if (email === emailId && password === pass) {
+          await AsyncStorage.setItem('isLogin', 'true');
+          await AsyncStorage.setItem('TYPE', role);
+          setModalVisible(false);
+          if (role === 'ADMIN') return navigation.navigate('Dashboard');
+          navigation.navigate('UDashboard');
+        } else {
+          setModalVisible(false);
+          Alert.alert('Alert!', 'Wrong Email/Password!');
+        }
       } else {
         setModalVisible(false);
-        Alert.alert('Alert!', 'Wrong Email/Password!');
+        alert('Please check internet connection !');
       }
     } else {
       setModalVisible(false);

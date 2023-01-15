@@ -33,6 +33,28 @@ export const styles = StyleSheet.create({
   logoutIcons: {
     width: 32,
     height: 32,
-    marginHorizontal: width * 0.5,
+    marginHorizontal: width * 0.55,
+  },
+  shoppingcartIconView: {
+    width: 40,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginHorizontal: width * 0.52,
+  },
+  shoppingcartIcon: {
+    width: 35,
+    height: 35,
+    marginHorizontal: width * 0.55,
+  },
+  cartCount: {
+    backgroundColor: 'red',
+    width: 20,
+    height: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 15 / 2,
+    marginHorizontal: width * 0.6,
+    top: height * 0.02,
   },
 });

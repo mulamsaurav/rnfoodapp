@@ -37,8 +37,14 @@ const ULogin = ({navigation}) => {
               querySnapshot.docs[0]._data.password === password
             ) {
               await AsyncStorage.setItem('isLogin', 'true');
-              console.log('User Logged In');
+              await AsyncStorage.setItem(
+                'USERID',
+                querySnapshot.docs[0]._data.userId,
+              );
+              const role = querySnapshot.docs[0]._data.role;
+              await AsyncStorage.setItem('TYPE', role);
               setModalVisible(false);
+              if (role === 'ADMIN') return navigation.navigate('Dashboard');
               navigation.navigate('UDashboard');
             } else {
               setModalVisible(false);

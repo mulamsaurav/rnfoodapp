@@ -8,6 +8,7 @@ import Loader from '../../../../Component/Loader/Loader';
 const Home = ({navigation}) => {
   const [item, setItem] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
   useEffect(() => {
     setModalVisible(true);
     const subscriber = firestore()
@@ -21,7 +22,6 @@ const Home = ({navigation}) => {
             data: documentSnapshot.data(),
           });
         });
-        console.log(tempData);
         setItem(tempData);
         setModalVisible(false);
       });
@@ -33,23 +33,26 @@ const Home = ({navigation}) => {
     // console.log('sadasdasd', item);
     return (
       <Itemslist
-        // navigation={navigation}
         item={item}
+        onItemAdd={cartCount => {
+          setCartCount(cartCount);
+        }}
       />
     );
   };
   return (
     <View>
-      <Header title={'FoodApp'} />
+      <Header
+        title={'FoodApp'}
+        navigation={navigation}
+        addCart
+        cartCount={cartCount}
+      />
       <FlatList
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
           margin: '2%',
-          // alignItems: 'center',
-          // justifyContent: 'center',
-          // width: '100%',
         }}
-        // style={{flex: 1, alignItems: 'center'}}
         data={item}
         renderItem={renderItemsList}
         keyExtractor={item => String(item?.id)}
