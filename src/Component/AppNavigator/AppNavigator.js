@@ -16,6 +16,9 @@ import ULogin from '../../screens/Auth/User/ULogin/ULogin.js';
 import USignup from '../../screens/Auth/User/USignup/USignup.js';
 import UDashboard from '../../screens/App/User/UDashboard/UDashboard.js';
 import Cart from '../../screens/App/User/Cart/Cart.js';
+import Checkout from '../../screens/App/User/Checkout/Checkout.js';
+import Address from '../../screens/App/User/Address/Address.js';
+import NewAddress from '../../screens/App/User/Address/NewAddress.js';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -100,6 +103,21 @@ const AppNavigator = () => {
         <Stack.Screen
           name="Cart"
           component={Cart}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Checkout"
+          component={Checkout}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Address"
+          component={Address}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="NewAddress"
+          component={NewAddress}
           options={{headerShown: false}}
         />
         {/* User Screens */}

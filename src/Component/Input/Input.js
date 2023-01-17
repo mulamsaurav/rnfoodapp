@@ -14,6 +14,7 @@ const Input = ({
   maxLength,
   onchangetext,
   keyboardType,
+  editable,
 }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const toggleEyeIcon = () => {
@@ -32,6 +33,7 @@ const Input = ({
         maxLength={maxLength}
         onChangeText={onchangetext}
         keyboardType={keyboardType}
+        editable={editable}
       />
       {isSecurePass ? (
         <TouchableOpacity onPress={toggleEyeIcon} style={{}}>

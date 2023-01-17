@@ -14,7 +14,6 @@ const USignup = ({navigation}) => {
   const [mobileNumber, setMobileNumber] = useState('');
   const [password, setPassword] = useState('');
   const [cpassword, setCpassword] = useState('');
-  useEffect(() => {}, []);
 
   const onSignup = () => {
     if (name !== '' && email !== '' && password !== '' && cpassword !== '') {
@@ -29,6 +28,7 @@ const USignup = ({navigation}) => {
           userId: userId,
           role: 'USER',
           cart: [],
+          addresses: [],
         })
         .then(() => {
           console.log('User added!');

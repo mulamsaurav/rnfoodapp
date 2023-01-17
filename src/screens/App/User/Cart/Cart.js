@@ -78,10 +78,26 @@ const Cart = ({navigation}) => {
   const calTotal = () => {
     let total = 0;
     cartData.map(item => {
-      console.log('cal', item);
       total = total + item.data.qty * item.data.itemDiscountPrice;
     });
     return total;
+  };
+  const onCheckout = async () => {
+    userId = await AsyncStorage.getItem('USERID');
+    const user = await firestore().collection('Users').doc(userId).get();
+    const add = user._data.addresses;
+    if (add != []) {
+      navigation.navigate('Checkout');
+    } else {
+      Alert.alert('Alert Title', 'Your address not set', [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'SET', onPress: () => navigation.navigate('NewAddress')},
+      ]);
+    }
   };
 
   const renderCartItem = ({item, index}) => {
@@ -156,7 +172,9 @@ const Cart = ({navigation}) => {
             title={'Shop now !'}
             style={styles.shopBtn}
             titleStyle={styles.shopTitleStyle}
-            onpress={() => navigation.navigate('UDashboard')}
+            onpress={() =>
+              navigation.navigate('UDashboard', {totalPrice: calTotal()})
+            }
           />
         </View>
       ) : (
@@ -175,7 +193,11 @@ const Cart = ({navigation}) => {
             <Text style={styles.totalPriceTxt}>
               {'Total Price $ ' + calTotal()}
             </Text>
-            <Button title={'Checkout'} style={styles.checkoutBtn} />
+            <Button
+              title={'Checkout'}
+              style={styles.checkoutBtn}
+              onpress={() => onCheckout()}
+            />
           </View>
         </View>
       )}
