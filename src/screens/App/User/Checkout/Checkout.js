@@ -6,6 +6,7 @@ import {
   Dimensions,
   Image,
   Alert,
+  SafeAreaView,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {useIsFocused, useRoute} from '@react-navigation/native';
@@ -14,23 +15,42 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Header from '../../../../Component/Appheader/Header';
 import Loader from '../../../../Component/Loader/Loader';
 import Button from '../../../../Component/Button/Button';
-
+let userId = '';
 const Checkout = ({navigation}) => {
   const isFocused = useIsFocused();
   const route = useRoute();
-  const [totalPrice, setTotalPrice] = useState(route?.params?.totalPrice);
+  const [selectedAddress, setSelectedAddress] = useState('');
   const [cartData, setCartData] = useState([]);
   const [modalVisible, setModalVisible] = useState(true);
 
   useEffect(() => {
     getCartItems();
-    console.log(route?.params?.totalPrice);
+    getAddresses();
   }, [isFocused]);
 
   const getCartItems = async () => {
     userId = await AsyncStorage.getItem('USERID');
     const user = await firestore().collection('Users').doc(userId).get();
     setCartData(user?._data?.cart);
+    setModalVisible(false);
+  };
+
+  const getAddresses = async () => {
+    setModalVisible(true);
+    const userId = await AsyncStorage.getItem('USERID');
+    const addressId = await AsyncStorage.getItem('ADDRESS');
+    const user = await firestore().collection('Users').doc(userId).get();
+    let tempData = [];
+    tempData = user._data.addresses;
+    tempData.map(item => {
+      if (item.addressId == addressId) {
+        console.log(item);
+        setSelectedAddress(item);
+      } else {
+        item.selected = false;
+      }
+    });
+    console.log('asdasdasd', selectedAddress);
     setModalVisible(false);
   };
   const calTotal = () => {
@@ -65,10 +85,10 @@ const Checkout = ({navigation}) => {
                     marginRight: 5,
                   },
                 ]}>
-                {'$' + item?.data?.itemDiscountPrice}
+                {'₹' + item?.data?.itemDiscountPrice}
               </Text>
               <Text style={styles.itemPiceTxt}>
-                {'$' + item?.data?.itemPrice}
+                {'₹' + item?.data?.itemPrice}
               </Text>
             </View>
           </View>
@@ -78,7 +98,7 @@ const Checkout = ({navigation}) => {
     );
   };
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Header title={'Checkout'} goBack navigation={navigation} />
       <FlatList
         showsVerticalScrollIndicator={false}
@@ -99,20 +119,30 @@ const Checkout = ({navigation}) => {
             padding: '2%',
           }}>
           <Text style={styles.totalPriceTxt}>{'Total Price  '}</Text>
-          <Text style={styles.totalPriceTxt}>{'$ ' + calTotal()}</Text>
+          <Text style={styles.totalPriceTxt}>{'₹ ' + calTotal()}</Text>
         </View>
         <View
           style={{
             flexDirection: 'row',
             justifyContent: 'space-around',
             flex: 1,
+            marginHorizontal: '2%',
             // padding: '2%',
           }}>
-          <Text style={styles.itemNameView}>
-            Address :
-            {
-              'asdaasdasdkjdghsd kjhskhbbl dhfkj ajk jdfhjkshfkah hjdkfhjkfh hkjhdjfkah'
-            }
+          <Text style={[styles.itemTxt, {fontSize: 16}]}>
+            {'Address :) ' +
+              '\n' +
+              'Street: ' +
+              selectedAddress.street +
+              '\n' +
+              'City: ' +
+              selectedAddress.city +
+              '\n' +
+              'Pincode: ' +
+              selectedAddress.pincode +
+              '\n' +
+              'Mobile: ' +
+              selectedAddress.mobile}
           </Text>
           <Button
             title={'Change Address'}
@@ -136,7 +166,7 @@ const Checkout = ({navigation}) => {
         </View>
       </View>
       <Loader modalVisible={modalVisible} setModalVisible={setModalVisible} />
-    </View>
+    </SafeAreaView>
   );
 };
 

@@ -7,6 +7,7 @@ import {
   Dimensions,
   TouchableOpacity,
   Image,
+  SafeAreaView,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {useIsFocused} from '@react-navigation/native';
@@ -27,14 +28,39 @@ const Address = ({navigation}) => {
   const getAddresses = async () => {
     setModalVisible(true);
     const userId = await AsyncStorage.getItem('USERID');
+    const addressId = await AsyncStorage.getItem('ADDRESS');
     const user = await firestore().collection('Users').doc(userId).get();
     let tempData = [];
     tempData = user._data.addresses;
+    tempData.map(item => {
+      if (item.addressId == addressId) {
+        item.selected = true;
+      } else {
+        item.selected = false;
+      }
+    });
     setAddresses(tempData);
     setModalVisible(false);
   };
+
+  onSetDefault = async item => {
+    await AsyncStorage.setItem('ADDRESS', item.addressId);
+    let tempData = [];
+    tempData = addresses;
+    tempData.map(itm => {
+      if (itm.addressId == item.addressId) {
+        itm.selected = true;
+      } else {
+        itm.selected = false;
+      }
+    });
+    let temp = [];
+    tempData.map(item => {
+      temp.push(item);
+    });
+    setAddresses(temp);
+  };
   const renderCartItem = ({item, index}) => {
-    console.log(item);
     return (
       <View>
         <View style={styles.flatListContainer}>
@@ -56,18 +82,27 @@ const Address = ({navigation}) => {
               }>
               <Image source={EditIcon} style={styles.editIcon} />
             </TouchableOpacity>
-            <Button
-              title={'Set Default'}
-              style={styles.defaultBtn}
-              titleStyle={styles.defaultTxt}
-            />
+            {item?.selected ? (
+              <Button
+                title={'Default'}
+                style={[styles.defaultBtn, {backgroundColor: 'grey'}]}
+                titleStyle={styles.defaultTxt}
+              />
+            ) : (
+              <Button
+                title={'Set Default'}
+                style={styles.defaultBtn}
+                titleStyle={styles.defaultTxt}
+                onpress={() => onSetDefault(item)}
+              />
+            )}
           </View>
         </View>
       </View>
     );
   };
   return (
-    <View style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1}}>
       <Header title={'Address'} goBack navigation={navigation} />
       <FlatList
         showsVerticalScrollIndicator={false}
@@ -87,7 +122,7 @@ const Address = ({navigation}) => {
         />
       </View>
       <Loader modalVisible={modalVisible} setModalVisible={setModalVisible} />
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -96,7 +131,7 @@ const {width, height} = Dimensions.get('window');
 const styles = StyleSheet.create({
   btnView: {
     position: 'absolute',
-    bottom: 0,
+    bottom: 5,
     backgroundColor: '#fff',
     width: width,
     height: height * 0.1,
@@ -133,7 +168,7 @@ const styles = StyleSheet.create({
   iconView: {
     // position: 'absolute',
     // right: 0,
-    marginHorizontal: width * 0.215,
+    marginHorizontal: width * 0.19,
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
