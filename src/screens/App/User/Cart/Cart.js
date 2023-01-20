@@ -125,10 +125,10 @@ const Cart = ({navigation}) => {
                       marginRight: 5,
                     },
                   ]}>
-                  {'$' + item?.data?.itemDiscountPrice}
+                  {'₹' + item?.data?.itemDiscountPrice}
                 </Text>
                 <Text style={styles.itemPiceTxt}>
-                  {'$' + item?.data?.itemPrice}
+                  {'₹' + item?.data?.itemPrice}
                 </Text>
               </View>
             </View>
@@ -191,7 +191,7 @@ const Cart = ({navigation}) => {
           />
           <View style={styles.footerView}>
             <Text style={styles.totalPriceTxt}>
-              {'Total Price $ ' + calTotal()}
+              {'Total Price ₹ ' + calTotal()}
             </Text>
             <Button
               title={'Checkout'}

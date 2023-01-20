@@ -87,9 +87,9 @@ const Itemslist = ({navigation, item, isAdmin, onItemAdd}) => {
                 marginRight: 5,
               },
             ]}>
-            {'$' + item?.data?.itemDiscountPrice}
+            {'₹' + item?.data?.itemDiscountPrice}
           </Text>
-          <Text style={styles.itemPiceTxt}>{'$' + item?.data?.itemPrice}</Text>
+          <Text style={styles.itemPiceTxt}>{'₹' + item?.data?.itemPrice}</Text>
         </View>
       </View>
       {isAdmin ? (
